@@ -327,22 +327,7 @@ def createBurst(id, start, end):
      return obj
 
 
-def firstCome(processArray=testArr):
 
-    print("First Come First Serve")
-
-    # Run the FCFS algorithm and capture the timeline
-    bursts = createGanttChart("FCFS", processArray)
-
-    # Print the final Gantt chart structure
-    print("\nGantt Chart Timeline:")
-    for entry in bursts:
-        print(f"Time {entry['time']}: Process {entry['id']}")
-
-    # Return timeline for use elsewhere in the program
-    return bursts
-
-print(firstCome(testArr))
 def sjf(processArray = testArr):
 
      bursts =createGanttChart("SJF", processArray)
