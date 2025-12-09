@@ -327,10 +327,38 @@ def createBurst(id, start, end):
      return obj
      
      
-def firstCome(processArray = testArr):
-     # Tony's Job
-     bursts = createGanttChart("FCFS", processArray)
-     print("First Come First Serve")
+def FCFS(bursts):
+    time = 0
+    gantt = []
+
+    # sort by arrival time
+    bursts = sorted(bursts, key=lambda x: x["arrivalTime"])
+
+    for p in bursts:
+
+        # CPU idle before process arrives
+        if time < p["arrivalTime"]:
+            gantt.append({
+                "id": "IDLE",
+                "start": time,
+                "end": p["arrivalTime"]
+            })
+            time = p["arrivalTime"]
+
+        # process execution burst
+        start_time = time
+        end_time = time + p["burstTime"]
+
+        gantt.append({
+            "id": p["id"],
+            "start": start_time,
+            "end": end_time
+        })
+
+        # advance CPU time
+        time = end_time
+
+    return gantt
 
 
 print(firstCome(testArr))
